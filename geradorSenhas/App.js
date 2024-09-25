@@ -1,24 +1,29 @@
+// KATH LINDA DIVA // 
 import { useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
- 
+import { StyleSheet, Text, View, Image, TouchableOpacity, Modal } from 'react-native';
+import { ModalPassword } from './src/components/modal/index';
+
 let charset = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
- 
+
 export default function App() {
   const [senhaGerada, setSenhaGerada] = useState("")
- 
-  function gerarSenha(){
-   
+  const [modalVisible, setModalVisible] = useState(false)
+
+  function gerarSenha() {
+
     let senha = "";
- 
-    for (let i = 0, n = charset.length; i < 10; i++){
+
+    for (let i = 0, n = charset.length; i < 10; i++) {
       senha += charset.charAt(Math.floor(Math.random() * n));
     }
- 
+
     setSenhaGerada(senha)
- 
+    setModalVisible(true);
+
   }
- 
- 
+
+
+  // KATH LINDA DIVA // 
   return (    
     <View style={styles.container}>
       <Image
@@ -31,13 +36,17 @@ export default function App() {
       <TouchableOpacity style={styles.button} onPress={gerarSenha}>
         <Text style={styles.textButton}> Gerar Senha </Text>
       </TouchableOpacity>
+
+      <Modal visible={modalVisible} animationType="fade" transparent={true}>
+      <ModalPassword senha={senhaGerada} handleClose={ () => setModalVisible(false)} />
+      </Modal>
  
      
       <Text style={styles.senha}> {senhaGerada} </Text>
-    </View>
+    </View >
   );
 }
- 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -61,9 +70,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 8,
-    padding: 6,    
+    padding: 6,
   },
-  textButton:{
+  textButton: {
     color: '#FFF',
     fontSize: 15,
     fontWeight: 'bold',
