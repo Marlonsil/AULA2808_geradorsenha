@@ -1,7 +1,11 @@
 // KATH LINDA DIVA // 
 import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
+import * as Clipboard from 'expo-clipborad';
 
 export function ModalPassword({senha, handleClose}) {
+
+    
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>
