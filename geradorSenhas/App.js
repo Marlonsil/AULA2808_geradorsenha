@@ -1,13 +1,21 @@
 // KATH LINDA DIVA // 
 import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Modal } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import SavedPasswords from './src/screens/SavePasswords';
 import { ModalPassword } from './src/components/modal/index';
+
 
 let charset = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-export default function App() {
-  const [senhaGerada, setSenhaGerada] = useState("")
-  const [modalVisible, setModalVisible] = useState(false)
+const Stack = createStackNavigator();
+
+function HomeScreen({navigation}) {
+  const [senhaGerada, setSenhaGerada] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [SavedPasswords, setSavedPasswords] = useState([]);
 
   function gerarSenha() {
 
@@ -23,11 +31,20 @@ export default function App() {
   }
 
 
+  function salvarSenha() {
+    setSavedPasswords (prevPasswords => {
+    const updatedPasswords = [...prevPasswords, senhaGerada];
+    setModalVisible(false); 
+    navigation.navigate('SavedPasswords', { savedPasswords: updatedPasswords }); // Navega e passa as senhas
+    return updatedPasswords; 
+    });
+  }
+
   // KATH LINDA DIVA // 
   return (    
     <View style={styles.container}>
       <Image
-        source={require("./src/imgs/logolindaerosa.png")}
+        source={require("./src/imgs/logolindaeroxa.png")}
         style={styles.logo}
       />
  
@@ -37,13 +54,27 @@ export default function App() {
         <Text style={styles.textButton}> Gerar Senha </Text>
       </TouchableOpacity>
 
+      <TouchableOpacity style={styles.button} onPress={salvarSenha}>
+        <Text style={styles.textButton}> Lock Salvas </Text>
+      </TouchableOpacity>
+
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
-      <ModalPassword senha={senhaGerada} handleClose={ () => setModalVisible(false)} />
-      </Modal>
- 
-     
-      <Text style={styles.senha}> {senhaGerada} </Text>
+      <ModalPassword senha={senhaGerada} handleClose={ () => setModalVisible(false)} salvarSenha={salvarSenha} />
+      </Modal>      
+
     </View >
+    
+  );
+}
+
+export default function App() {
+  return (
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="SavedPasswords" component={SavedPasswords} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 }
 
@@ -56,21 +87,24 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginBottom: 20,
+    width: 300,
+    height: 300,
   },
   title: {
     fontWeight: 'bold',
     fontSize: 28,
     marginBottom: 50,
-    color: '#DE9CA7',
+    color: '#8662F0',
   },
   button: {
-    backgroundColor: '#FBDAE5',
+    backgroundColor: '#4D3592',
     width: '70%',
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 8,
-    padding: 6,
+    padding: 10,
+    marginBottom: 10,
   },
   textButton: {
     color: '#FFF',

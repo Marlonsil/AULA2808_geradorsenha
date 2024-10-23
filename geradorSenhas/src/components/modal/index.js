@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-nativ
 import * as Clipboard from 'expo-clipboard';
 import Toast from 'react-native-toast-message';
 
-export function ModalPassword({senha, handleClose}) {
+export function ModalPassword({senha, handleClose, salvarSenha}) {
 
     function copyToClipboard() {
         Clipboard.setStringAsync(senha);
@@ -25,11 +25,11 @@ export function ModalPassword({senha, handleClose}) {
 
                 <View style={styles.buttonArea}>
                     <TouchableOpacity style={styles.button} onPress={handleClose}>
-                        <Text style={styles.buttonText}>Voltar</Text>
+                        <Text style={styles.buttonText}> VOLTAR </Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.button, styles.buttonSave]}>
-                        <Text style={styles.buttonSaveText}>SAVE LOCK</Text>
+                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={salvarSenha}>
+                        <Text style={styles.buttonSaveText}>SALVAR SENHA</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         marginBottom: 24,
     },
     innerPassword: {
-        backgroundColor: "#F7E6EC",
+        backgroundColor: "#B79CED",
         width: "90%",
         padding: 14,
         borderRadius: 8,
@@ -85,14 +85,23 @@ const styles = StyleSheet.create({
         marginTop: 14,
         marginBottom: 14,
         padding: 8,
+        borderRadius: 8,
+        marginLeft: 4,
+        backgroundColor: "#8662F0",
     },
     buttonSave: {
-        backgroundColor: "#FBDAE5",
+        backgroundColor: "#8662F0",
         borderRadius: 8,
     },
     buttonSaveText: {
         color: "#FFF",
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        backgroundColor: "#8662F0",
+    },
+    buttonText: {
+        color: "#FFF",
+        fontWeight: 'bold',
+        backgroundColor: "#8662F0",
     }
 
 })
