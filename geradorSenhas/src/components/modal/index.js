@@ -10,7 +10,7 @@ export function ModalPassword({senha, handleClose, salvarSenha}) {
         Toast.show({
             type: 'success',
             text1: 'LOCK COPIOU BB! 🎀',
-            text2: 'youy lock ja foi copiada na area de trasnferência!',
+            text2: 'you lock ja foi copiada na area de trasnferência!',
         });
     }
 
