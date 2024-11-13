@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import SavedPasswords from './src/screens/SavePasswords';
+import ImporSenha from './src/screens/ImportanciaSenha';
 import { ModalPassword } from './src/components/modal/index';
 
 
@@ -40,6 +41,10 @@ function HomeScreen({navigation}) {
     });
   }
 
+  function importanciaSenha() {
+    navigation.navigate('ImporSenha'); // Navega para a tela "ImporSenha"
+  }
+
   // KATH LINDA DIVA // 
   return (    
     <View style={styles.container}>
@@ -51,11 +56,15 @@ function HomeScreen({navigation}) {
       <Text style={styles.title}> SENHAS DIVÔNICAS :) </Text>
  
       <TouchableOpacity style={styles.button} onPress={gerarSenha}>
-        <Text style={styles.textButton}> Gerar Senha </Text>
+        <Text style={styles.textButton}> GERAR SENHA </Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={salvarSenha}>
-        <Text style={styles.textButton}> Lock Salvas </Text>
+        <Text style={styles.textButton}> SENHAS SALVAS </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={importanciaSenha}>
+        <Text style={styles.textButton}> QUAL A IMPORTÂNCIA DE TER UMA SENHA FORTE? </Text>
       </TouchableOpacity>
 
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
@@ -73,6 +82,7 @@ export default function App() {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="SavedPasswords" component={SavedPasswords} />
+      <Stack.Screen name="ImporSenha" component={ImporSenha} />
     </Stack.Navigator>
   </NavigationContainer>
   );
