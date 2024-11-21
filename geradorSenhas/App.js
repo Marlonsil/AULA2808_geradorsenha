@@ -49,7 +49,7 @@ function HomeScreen({navigation}) {
   return (    
     <View style={styles.container}>
       <Image
-        source={require("./src/imgs/logolindaeroxa.png")}
+        source={require("./src/imgs/cadeadoroxo.png")}
         style={styles.logo}
       />
  
@@ -64,7 +64,7 @@ function HomeScreen({navigation}) {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={importanciaSenha}>
-        <Text style={styles.textButton}> QUAL A IMPORTÂNCIA DE TER UMA SENHA FORTE? </Text>
+        <Text style={styles.textButton}> PORQUE TER UMA SENHA FORTE? </Text>
       </TouchableOpacity>
 
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
@@ -104,10 +104,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 28,
     marginBottom: 50,
-    color: '#8662F0',
+    color: '#7F5C84',
   },
   button: {
-    backgroundColor: '#4D3592',
+    backgroundColor: '#A982AE',
     width: '70%',
     height: 50,
     alignItems: 'center',
