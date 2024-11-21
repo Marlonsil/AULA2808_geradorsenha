@@ -18,7 +18,7 @@ function HomeScreen({navigation}) {
   const [modalVisible, setModalVisible] = useState(false);
   const [SavedPasswords, setSavedPasswords] = useState([]);
 
-  function gerarSenha() {
+  function gerarSenha() { 
 
     let senha = "";
 
